@@ -31,6 +31,8 @@ dataBox/
 │       ├── 📁 dist/                   # Build da 2.0.0 (dataBox.js, dataBox.min.js, plugins/)
 │       └── 📁 docs/                   # Documentação e exemplos da 2.0.0 (examples/, assets/)
 │
+├── 📁 doc/                        # documentação de cada versão publicadas
+│
 ├── 📄 .gitignore                      # Ficheiros ignorados pelo Git (node_modules, logs, temporários)
 ├── 📄 CHANGELOG.md                    # Histórico de alterações por versão (formato Keep a Changelog)
 ├── 📄 LICENSE                         # Licença MIT

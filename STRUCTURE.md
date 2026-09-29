@@ -5,34 +5,38 @@ servir de referência ao criar/organizar bibliotecas JS de portfólio
 semelhantes (padrão Syntax Serenity).
 
 ```
-data-box/
-├── 📁 src/                        # Código-fonte (legível, comentado)
-│   ├── 📄 dataBox.js                  # Core da biblioteca
-│   └── 📁 plugins/
-│       └── 📄 dataBox.tree.js             # Plugin de vista em árvore
+dataBox/
+├── 📁 versions/                       # Todas as versões publicadas, isoladas por pasta
+│   │
+│   ├── 📁 dataBox-1.0.0-dist/         # Versão 1.0.0 — autónoma, com código, build e documentação
+│   │   ├── 📁 src/                    # Código-fonte original (legível, comentado) — onde se desenvolve
+│   │   │   ├── 📄 dataBox.js              # Core: tabela, cartões, kanban, ordenação, pesquisa, paginação
+│   │   │   └── 📁 plugins/                # Extensões opcionais (ex.: exportação, SearchBuilder, SearchPanes)
+│   │   │
+│   │   ├── 📁 dist/                   # Ficheiros gerados pelo build — não editar à mão
+│   │   │   ├── 📄 dataBox.js              # Cópia legível do src, útil para depurar via CDN
+│   │   │   ├── 📄 dataBox.min.js          # Versão minificada (terser) — a usada pelos exemplos e pelo CDN
+│   │   │   └── 📁 plugins/                # Plugins já compilados/minificados
+│   │   │
+│   │   └── 📁 docs/                   # Site oficial: demonstração + documentação da API
+│   │       ├── 📁 examples/               # Uma página HTML por vista ou funcionalidade
+│   │       └── 📁 assets/                 # Recursos estáticos do site
+│   │           ├── 📁 css/                    # Estilos da documentação e dos exemplos
+│   │           └── 📁 img/                    # Imagens, ícones e capturas de ecrã
+│   │
+│   └── 📁 dataBox-2.0.0-dist/         # Versão 2.0.0 — mesma organização da 1.0.0
+│       ├── 📁 src/                    # Código-fonte da 2.0.0
+│       │   ├── 📄 dataBox.js
+│       │   └── 📁 plugins/
+│       ├── 📁 dist/                   # Build da 2.0.0 (dataBox.js, dataBox.min.js, plugins/)
+│       └── 📁 docs/                   # Documentação e exemplos da 2.0.0 (examples/, assets/)
 │
-├── 📁 dist/                       # Ficheiros prontos para consumo (build)
-│   ├── 📄 dataBox.js                  # Cópia legível do src (debug via CDN)
-│   ├── 📄 dataBox.min.js              # Minificado — é ESTE que os exemplos/CDN usam
-│   └── 📁 plugins/
-│       ├── 📄 dataBox.tree.js
-│       └── 📄 dataBox.tree.min.js
-│
-├── 📁 docs/                       # Página oficial (demo + documentação)
-│   ├── 📁 examples/                   # Uma página HTML por vista/funcionalidade
-│   │   ├── 📄 table-view.html
-│   │   ├── 📄 kanban-view.html
-│   │   └── 📄 tree-view.html
-│   └── 📁 assets/
-│       ├── 📁 css/
-│       └── 📁 img/
-│
-├── 📄 .gitignore
-├── 📄 CHANGELOG.md                # Histórico de versões (Keep a Changelog)
-├── 📄 LICENSE                     # MIT
-├── 📄 package.json                # Metadados + script de build (terser)
-├── 📄 README.md                   # Documentação principal (raiz do repo)
-└── 📄 STRUCTURE.md                # Este ficheiro
+├── 📄 .gitignore                      # Ficheiros ignorados pelo Git (node_modules, logs, temporários)
+├── 📄 CHANGELOG.md                    # Histórico de alterações por versão (formato Keep a Changelog)
+├── 📄 LICENSE                         # Licença MIT
+├── 📄 package.json                    # Metadados do projeto e script de build (terser)
+├── 📄 README.md                       # Apresentação, instalação e uso rápido (página inicial do repo)
+└── 📄 STRUCTURE.md                    # Este ficheiro: mapa das pastas e ficheiros do repositório
 ```
 
 ## Porquê separar `src/` de `dist/`

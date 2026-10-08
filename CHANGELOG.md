@@ -18,7 +18,7 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-PT
 
 ### Notas
 - Versão core `dataBox.js` corresponde à v2.0.0 já usada internamente nos
-  projetos da Syntax Serenity antes da publicação pública deste repositório.
+  projetos da Syntax Serenity.
 
 <!--
 ## [Não lançado]

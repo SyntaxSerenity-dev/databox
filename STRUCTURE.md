@@ -45,6 +45,7 @@ dataBox/
 ├── 📄 LICENSE.md              # Licença do projeto (md)
 ├── 📄 LICENSE                 # Licença do projeto
 ├── 📄 README.md               # Documentação principal (raiz do repo)
+├── 📄 package.json
 └── 📄 SECURITY.md             # Política de segurança
 ```
 

@@ -5,7 +5,7 @@ servir de referência ao criar/organizar bibliotecas JS de portfólio
 semelhantes (padrão Syntax Serenity).
 
 ```
-dataBox/
+dataBox/ 
 ├── 📁 versions/                       # Todas as versões publicadas, isoladas por pasta
 │   │
 │   ├── 📁 dataBox-1.0.0-dist/         # Versão 1.0.0 — autónoma, com código, build e documentação
@@ -24,21 +24,28 @@ dataBox/
 │   │           ├── 📁 css/                    # Estilos da documentação e dos exemplos
 │   │           └── 📁 img/                    # Imagens, ícones e capturas de ecrã
 │   │
-│   └── 📁 dataBox-2.0.0-dist/         # Versão 2.0.0 — mesma organização da 1.0.0
+│   └── 📁 dataBox-2.0.0-dist/         # Versão 2.0.0 — autónoma, com código, build e documentação
 │       ├── 📁 src/                    # Código-fonte da 2.0.0
 │       │   ├── 📄 dataBox.js
 │       │   └── 📁 plugins/
+│       │
 │       ├── 📁 dist/                   # Build da 2.0.0 (dataBox.js, dataBox.min.js, plugins/)
+│       │   ├── 📄 dataBox.js              # Cópia legível do src, útil para depurar via CDN
+│       │   ├── 📄 dataBox.min.js          # Versão minificada (terser) — a usada pelos exemplos e pelo CDN
+│       │   └── 📁 plugins/                # Plugins já compilados/minificados
+│       │
 │       └── 📁 docs/                   # Documentação e exemplos da 2.0.0 (examples/, assets/)
-│
-├── 📁 doc/                        # documentação de cada versão publicadas
-│
-├── 📄 .gitignore                      # Ficheiros ignorados pelo Git (node_modules, logs, temporários)
-├── 📄 CHANGELOG.md                    # Histórico de alterações por versão (formato Keep a Changelog)
-├── 📄 LICENSE                         # Licença MIT
-├── 📄 package.json                    # Metadados do projeto e script de build (terser)
-├── 📄 README.md                       # Apresentação, instalação e uso rápido (página inicial do repo)
-└── 📄 STRUCTURE.md                    # Este ficheiro: mapa das pastas e ficheiros do repositório
+│           ├── 📁 examples/               # Uma página HTML por vista ou funcionalidade
+│           └── 📁 assets/                 # Recursos estáticos do site
+│               ├── 📁 css/                    # Estilos da documentação e dos exemplos
+│               └── 📁 img/                    # Imagens, ícones e capturas de ecrã
+│   
+├── 📁 docs/                   # documentação de cada versão publicadas
+├── 📄 .gitignore              # Arquivos ignorados pelo Git
+├── 📄 LICENSE.md              # Licença do projeto (md)
+├── 📄 LICENSE                 # Licença do projeto
+├── 📄 README.md               # Documentação principal (raiz do repo)
+└── 📄 SECURITY.md             # Política de segurança
 ```
 
 ## Porquê separar `src/` de `dist/`

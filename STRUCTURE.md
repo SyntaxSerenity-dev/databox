@@ -1,8 +1,7 @@
 # Arquitetura do Repositório — DataBox
 
 Este ficheiro documenta a estrutura de pastas usada neste repositório, para
-servir de referência ao criar/organizar bibliotecas JS de portfólio
-semelhantes (padrão Syntax Serenity).
+servir de referência ou mapa de orientação dos arquivos presentes (padrão Syntax Serenity).
 
 ```
 dataBox/ 

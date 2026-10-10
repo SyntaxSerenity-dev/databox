@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AJAX e server-side — Exemplos DataBox</title>
+    <meta name="description" content="Pesquisa, ordenação e paginação delegadas a um servidor. Aqui o servidor é simulado no browser, por isso funciona sem backend.">
+    <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="../assets/css/examples.css" rel="stylesheet">
+</head>
+<body data-example="ajax-server-side">
+<main class="ex-main container" id="ex-main" data-log>
+    <div class="ex-stage">
+        <div class="ex-toolbar">
+            <label for="filtro-dep" class="text-muted small me-1">setAjaxParams({ departamento }):</label>
+            <select id="filtro-dep" class="form-select form-select-sm w-auto">
+                <option value="">Todos os departamentos</option>
+                <option>TI</option>
+                <option>RH</option>
+                <option>Financeiro</option>
+                <option>Marketing</option>
+                <option>Operações</option>
+            </select>
+        </div>
+        <div id="meus-dados"></div>
+    </div>
+</main>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../../dist/dataBox.min.js"></script>
+<script src="../assets/js/examples.js"></script>
+<script id="demo">
+// Servidor simulado no browser: responde a URLs "mock://..." sem precisar de backend.
+// Num projeto real, troca por uma URL tua (ex.: '/api/colaboradores').
+ExamplesKit.installMockServer({ latency: 300 });
+
+const db = DataBox.init({
+    target: '#meus-dados',
+    views: {
+        card: { active: false },
+        table: {
+            active: true,
+            columns: [
+                { data: 'id', title: '#', className: 'text-muted' },
+                { data: 'nome', title: 'Nome' },
+                { data: 'departamento', title: 'Departamento' },
+                { data: 'cargo', title: 'Cargo' },
+                { data: 'salario', title: 'Salário' }
+            ]
+        }
+    },
+    ajax: {
+        url: 'mock://colaboradores',
+        method: 'GET',
+        dataType: 'json',
+        serverSide: true,                        // pesquisa, ordenação e paginação ficam no servidor
+        params: { departamento: '' },
+        beforeSend: function (xhr, params) { ExamplesKit.log('→ pedido enviado ao servidor'); }
+    },
+    sorting: { active: true, serverSide: true },
+    search: { active: true, debounce: 400 },
+    pagination: { limit: 10 },
+    callbacks: {
+        onDataLoaded: function (data, instance) { ExamplesKit.log('← ' + data.length + ' registos recebidos'); },
+        onError: function (xhr, status, error) { ExamplesKit.log('Erro no pedido: ' + status); }
+    }
+});
+
+document.getElementById('filtro-dep').addEventListener('change', function () {
+    db.setAjaxParams({ departamento: this.value }).reload();
+});
+</script>
+</body>
+</html>

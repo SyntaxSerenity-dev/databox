@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pesquisa e filtros — Exemplos DataBox</title>
+    <meta name="description" content="Pesquisa global e por coluna, filtros rápidos e o Query Builder para condições avançadas com AND/OR.">
+    <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="../assets/css/examples.css" rel="stylesheet">
+</head>
+<body data-example="pesquisa-filtros">
+<main class="ex-main container" id="ex-main" data-log>
+    <div class="ex-stage">
+        <div class="ex-toolbar">
+            <button type="button" class="btn btn-sm btn-outline-secondary" id="limpar">clearSearch(): limpar pesquisas e filtros</button>
+        </div>
+        <div id="meus-dados"></div>
+    </div>
+</main>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../../dist/dataBox.min.js"></script>
+<script src="../assets/js/examples.js"></script>
+<script id="demo">
+const db = DataBox.init({
+    target: '#meus-dados',
+    data: ExamplesKit.employees(),
+    views: {
+        card: { active: false },
+        table: {
+            active: true,
+            columns: [
+                { data: 'nome', title: 'Nome' },
+                { data: 'email', title: 'Email' },
+                { data: 'departamento', title: 'Departamento' },
+                { data: 'cargo', title: 'Cargo' },
+                { data: 'estado', title: 'Estado' }
+            ]
+        }
+    },
+    search: { active: true, global: true, perColumn: true, debounce: 300, placeholder: 'Pesquisar em tudo…' },
+    quickFilters: {
+        active: true,
+        filters: [
+            {
+                type: 'dropdown', field: 'departamento', label: 'Departamento',
+                options: [
+                    { value: 'TI', label: 'Tecnologia' },
+                    { value: 'RH', label: 'Recursos Humanos' },
+                    { value: 'Financeiro', label: 'Financeiro' },
+                    { value: 'Marketing', label: 'Marketing' },
+                    { value: 'Operações', label: 'Operações' }
+                ]
+            },
+            {
+                type: 'buttons', field: 'estado', label: 'Estado',
+                options: [
+                    { value: 'ativo', label: 'Ativos' },
+                    { value: 'ferias', label: 'Férias' },
+                    { value: 'inativo', label: 'Inativos' }
+                ]
+            }
+        ]
+    },
+    queryBuilder: {
+        active: true,
+        columns: [
+            { data: 'nome', title: 'Nome' },
+            { data: 'departamento', title: 'Departamento' },
+            { data: 'salario', title: 'Salário' },
+            { data: 'admissao', title: 'Admissão' }
+        ]
+    },
+    pagination: { limit: 10 },
+    callbacks: {
+        onSearch: function (term, instance) { ExamplesKit.log('Pesquisa: "' + term + '"'); }
+    }
+});
+
+document.getElementById('limpar').addEventListener('click', function () { db.clearSearch(); });
+</script>
+</body>
+</html>

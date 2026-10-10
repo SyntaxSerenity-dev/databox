@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Kanban com drag &amp; drop — Exemplos DataBox</title>
+    <meta name="description" content="Agrupa os registos em colunas por um campo e deixa arrastar os cards entre colunas. Cada movimento aparece no registo de eventos.">
+    <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="../assets/css/examples.css" rel="stylesheet">
+</head>
+<body data-example="kanban">
+<main class="ex-main container" id="ex-main" data-log>
+    <div class="ex-stage">
+        <div id="meus-dados"></div>
+    </div>
+</main>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../../dist/dataBox.min.js"></script>
+<script src="../assets/js/examples.js"></script>
+<script id="demo">
+const esc = ExamplesKit.esc;
+
+const db = DataBox.init({
+    target: '#meus-dados',
+    data: ExamplesKit.tasks(),
+    views: {
+        card: { active: false },
+        kanban: {
+            active: true,
+            groupBy: 'estado',            // cada valor de "estado" vira uma coluna
+            allowDragDrop: true,
+            columnHeader: function (groupName, count, instance) {
+                return `<div class="d-flex justify-content-between">
+                    <strong>${esc(groupName)}</strong>
+                    <span class="badge bg-primary">${count}</span>
+                </div>`;
+            },
+            cardTemplate: function (item) {
+                return `<div class="p-2">
+                    <div class="fw-semibold">${esc(item.titulo)}</div>
+                    <div class="text-muted small">${esc(item.responsavel)} · prioridade ${esc(item.prioridade)}</div>
+                </div>`;
+            }
+        }
+    },
+    pagination: { limit: 50, limiter: false },   // mostra as 12 tarefas de uma vez
+    callbacks: {
+        onKanbanDrop: function (item, oldGroup, newGroup, instance) {
+            ExamplesKit.log(`"${item.titulo}" passou de "${oldGroup}" para "${newGroup}"`);
+        }
+    }
+});
+</script>
+</body>
+</html>

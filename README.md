@@ -111,6 +111,7 @@ Distribuído sob a licença MIT. Ver [LICENSE](./LICENSE) para mais informação
 
 ## 👤 Autor
 
+**Fanilton F. Samuel**
 **Syntax Serenity**
 - GitHub: [@SyntaxSerenity-dev](https://github.com/SyntaxSerenity-dev)
 - E-mail: fs.developerfullstack@gmail.com

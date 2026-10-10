@@ -201,8 +201,7 @@ Distribuído sob a licença **MIT**: podes usar, modificar e distribuir em proje
 
 ## 👤 Autor
 
-**Fanilton F. Samuel**
-**Syntax Serenity**
+**Fanilton F. Samuel - Syntax Serenity**
 
 - GitHub: [@SyntaxSerenity-dev](https://github.com/SyntaxSerenity-dev)
 - E-mail: fs.developerfullstack@gmail.com
